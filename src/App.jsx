@@ -1,4 +1,7 @@
-import { FilmDetails } from "./components/FilmDetails";
+import { useMemo } from "react";
+import { FilmDetails } from "./components/FilmDetails/FilmDetails.jsx";
+import { Reviews } from "./components/Reviews/Reviews.jsx";
+import { NewReviewForm } from "./components/newReviewForm/NewReviewForm.jsx";
 
 function App() {
   const filmDetails = {
@@ -21,6 +24,14 @@ function App() {
       },
     ],
   };
+  const filmRaiting = useMemo(() => {
+    return Math.floor(
+      filmDetails.reviews.reduce((sum, review) => {
+        return sum + review.rating;
+      }, 0) / filmDetails.reviews.length,
+    );
+  }, [filmDetails.reviews]);
+
   return (
     <div>
       <FilmDetails
@@ -28,6 +39,8 @@ function App() {
         genre={filmDetails.genre}
         seasonsCount={filmDetails.seasonsCount}
       />
+      <Reviews reviews={filmDetails.reviews} />
+      <NewReviewForm />
     </div>
   );
 }

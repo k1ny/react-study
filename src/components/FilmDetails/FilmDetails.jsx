@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useCount } from "../hooks/setCount";
+import { useCount } from "../../hooks/setCount";
 import { FilmInfo } from "./FilmInfo";
 
 export const FilmDetails = ({ title, genre, seasonsCount }) => {
